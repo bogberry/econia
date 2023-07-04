@@ -60,6 +60,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./src/rust
-          push: {{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           tags: asia-northeast1-docker.pkg.dev/econia-0/econia-backend/api:latest
           file: ./src/rust/api/Dockerfile

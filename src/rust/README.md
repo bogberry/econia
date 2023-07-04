@@ -1,5 +1,7 @@
 # Econia Rust crates
 
+Hello.
+
 ## Running the API
 
 To run the API, make sure the following dependencies are installed.

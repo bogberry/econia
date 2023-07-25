@@ -1,0 +1,48 @@
+---
+name: Build Rust SDK
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/rust/sdk/**"
+      - "src/rust/types/**"
+      - src/rust/Cargo.toml
+      - src/rust/Cargo.lock
+      - .github/workflows/build-rust-sdk.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "src/rust/sdk/**"
+      - "src/rust/types/**"
+      - src/rust/Cargo.toml
+      - src/rust/Cargo.lock
+      - .github/workflows/build-rust-sdk.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src/rust/sdk
+
+    permissions:
+      contents: "read"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Build Rust SDK
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --all-features

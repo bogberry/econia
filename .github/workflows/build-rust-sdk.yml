@@ -32,13 +32,13 @@ jobs:
       - name: Setup mold
         uses: rui314/setup-mold@v1
 
-      - name: Setup Rust cache
-        uses: Swatinem/rust-cache@v2
-        with:
-          prefix-key: rust-sdk
+      - name: Run sccache-cache
+        uses: mozilla-actions/sccache-action@v0.0.3
 
       - name: Build Rust SDK
         run: cargo build
         working-directory: src/rust/sdk
         env:
           RUSTFLAGS: -C link-arg=-fuse-ld=mold
+          SCCACHE_GHA_ENABLED: true
+          RUSTC_WRAPPER: sccache

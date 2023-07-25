@@ -25,9 +25,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: src/rust/sdk
 
     permissions:
       contents: "read"
@@ -42,7 +39,5 @@ jobs:
           toolchain: stable
 
       - name: Build Rust SDK
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --all-features
+        run: cargo build --all-features
+        working-directory: src/rust/sdk

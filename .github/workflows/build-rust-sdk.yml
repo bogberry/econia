@@ -38,6 +38,9 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Setup mold
+        uses: rui314/setup-mold@v1
+
       - name: Build Rust SDK
         run: cargo build --all-features
         working-directory: src/rust/sdk

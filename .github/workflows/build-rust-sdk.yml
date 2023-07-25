@@ -44,3 +44,5 @@ jobs:
       - name: Build Rust SDK
         run: cargo build --all-features
         working-directory: src/rust/sdk
+        env:
+          RUSTFLAGS: -C link-arg=-fuse-ld=mold
